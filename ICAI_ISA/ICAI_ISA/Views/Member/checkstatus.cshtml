@@ -1,0 +1,88 @@
+﻿
+<h2 class="text-capilization text-center headerMessage1">Check Status</h2>
+
+<div class="container-fluid border border-info p-2">
+    <form class="row" id="checkPaymentStatusForm">
+        <div class="col-sm-auto">
+            <label for="txtMembershipNo" class="form-label">Membership No.</label>
+            <input type="text" class="form-control form-control-sm" id="txtMembershipNo" placeholder="Membership No">
+        </div>
+        <div class="col-sm-auto mt-3 text-center">
+            <span><strong> OR </strong></span>
+        </div>
+        <div class="col-sm-auto">
+            <label for="txtRegistrationNo" class="form-label">ISA Registration No.</label>
+            <input type="text" class="form-control form-control-sm" id="txtRegistrationNo" placeholder="ISA Registration No">
+        </div>
+        <div class="col-sm-auto p-1 ms-2">
+            <button type="button" id="btnCheckPaymentStatus" class="btn btn-sm btn-primary mt-4">Check Status</button>
+        </div>
+    </form>
+</div>
+
+<div class="container mt-3">
+    <div class="table-responsive" id='tblCheckPaymentStatus'>        
+   </div>
+</div>
+<br />
+<div class="p-1 ms-2 text-end">
+    <a id="btnBack" asp-controller="Member" asp-action="CheckStatus" class="btn btn-sm btn-primary">Back</a>
+</div>
+<br />
+&nbsp;
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#btnBack").hide();
+        });
+
+        $(function () {
+            $("#btnCheckPaymentStatus").click(function () {
+
+                $('#tblCheckPaymentStatus').html("");
+
+                var data = {
+                    membershipNo: $("#txtMembershipNo").val(),
+                    registrationNo: $("#txtRegistrationNo").val()
+                };
+                var data = JSON.stringify(data)
+                console.log(data);
+               // alert(data);
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("CheckPaymentStatus", "Member")",
+                    contentType: 'application/json',
+                    data: data,
+                    dataType: "json",
+                    success: function (result) {
+
+                        paymentStatusstring = "<table class='table table-bordered border-primary ps-5'>" +
+                            "<tr><td>Member Name</td><td>" + result.memberName + "</td></tr>" +
+                            "<tr><td>Membership No</td><td>" + result.membershipNo + "</td></tr>" +
+                            "<tr><td>ISA Registration No</td><td>" + result.isaRegistrationNo + "</td></tr>" +
+                            "<tr><td>Control No</td><td>" + result.controlNo + "</td></tr>" +
+                            "<tr><td>MTID</td><td>" + result.mtid + "</td></tr>" +
+                            "<tr><td>Transaction No</td><td>" + result.transactionNo + "</td></tr>" +
+                            "<tr><td>Payment Status</td><td>" + result.paymentStatus + "</td></tr>" +
+                            "<tr><td>Transaction Date</td><td>" + result.transactionDate + "</td></tr>" +
+                            "</table>";
+
+                        $("#tblCheckPaymentStatus").append(paymentStatusstring);
+
+                        $("#btnBack").show();
+
+                        console.log(result);
+                    },
+                    error: function () {
+                        alert('Failed to receive the Data');
+                        console.log('Failed ');
+                    }
+                });
+            });
+        });
+        
+    </script>
+}
