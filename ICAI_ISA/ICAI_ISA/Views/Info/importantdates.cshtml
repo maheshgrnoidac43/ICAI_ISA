@@ -1,0 +1,38 @@
+﻿@model ICAI_ISA.Model.Dto.ExamSessionDto
+
+<h2 class="text-capilization text-center headerMessage1">Important Dates - @Model.CurrentExamSession.SessionName</h2>
+
+<div class="container mt-3">
+    <div class="table-responsive-sm">
+        <table class="table table-sm table-striped table-hover">
+
+            <tbody>
+                @foreach (var item in Model.CurrentExamSessionDetails)
+                {
+                    <tr>
+                        @if (item.SessionKey.Contains("Timings of Examination"))
+                        {
+                            <td class="text-success">
+                                <strong>@Html.DisplayFor(modelItem => item.SessionKey)</strong>
+                            </td>
+                            <td class="text-success">
+                                <strong>@Html.DisplayFor(modelItem => item.SessionValue)</strong>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-primary">
+                                <strong>@Html.DisplayFor(modelItem => item.SessionKey)</strong>
+                            </td>
+                            <td class="text-primary">
+                                @Html.DisplayFor(modelItem => item.SessionValue)
+                            </td>
+                        }                                               
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+&nbsp;

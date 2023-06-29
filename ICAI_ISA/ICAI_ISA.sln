@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICAI_ISA", "ICAI_ISA\ICAI_ISA.csproj", "{6496A9F7-0D2D-460B-82A5-EA6544CF1851}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICAI_ISA.Repository", "ICAI_ISA.Repository\ICAI_ISA.Repository.csproj", "{24890191-1BB0-40DF-8465-7E3669F67556}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICAI_ISA.Services", "ICAI_ISA.Services\ICAI_ISA.Services.csproj", "{00FC5CEF-F482-45C7-84AA-F65C77A94B53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICAI_ISA.Model", "ICAI_ISA.Model\ICAI_ISA.Model.csproj", "{F20E942B-1E36-46FA-8B28-644077BA1E86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICAI_ISA.Core", "ICAI_ISA.Core\ICAI_ISA.Core.csproj", "{50134259-4728-42C6-B7FA-4354F788066D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICAI_ISA.Test", "ICAI_ISA.Test\ICAI_ISA.Test.csproj", "{6314A62A-78EA-499F-B80E-4DC75CFC8CDF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6496A9F7-0D2D-460B-82A5-EA6544CF1851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6496A9F7-0D2D-460B-82A5-EA6544CF1851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6496A9F7-0D2D-460B-82A5-EA6544CF1851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6496A9F7-0D2D-460B-82A5-EA6544CF1851}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24890191-1BB0-40DF-8465-7E3669F67556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24890191-1BB0-40DF-8465-7E3669F67556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24890191-1BB0-40DF-8465-7E3669F67556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24890191-1BB0-40DF-8465-7E3669F67556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00FC5CEF-F482-45C7-84AA-F65C77A94B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FC5CEF-F482-45C7-84AA-F65C77A94B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FC5CEF-F482-45C7-84AA-F65C77A94B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FC5CEF-F482-45C7-84AA-F65C77A94B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20E942B-1E36-46FA-8B28-644077BA1E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20E942B-1E36-46FA-8B28-644077BA1E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20E942B-1E36-46FA-8B28-644077BA1E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20E942B-1E36-46FA-8B28-644077BA1E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50134259-4728-42C6-B7FA-4354F788066D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50134259-4728-42C6-B7FA-4354F788066D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50134259-4728-42C6-B7FA-4354F788066D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50134259-4728-42C6-B7FA-4354F788066D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6314A62A-78EA-499F-B80E-4DC75CFC8CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6314A62A-78EA-499F-B80E-4DC75CFC8CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6314A62A-78EA-499F-B80E-4DC75CFC8CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6314A62A-78EA-499F-B80E-4DC75CFC8CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {604F7345-EE1B-4303-885F-7A21DE5E2B10}
+	EndGlobalSection
+EndGlobal

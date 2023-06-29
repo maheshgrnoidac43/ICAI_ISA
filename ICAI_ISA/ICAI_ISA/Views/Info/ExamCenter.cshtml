@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ICAI_ISA.Model.ExamCenter>
+
+<h2 class="text-capilization text-center headerMessage1">ISA Examination Centres - @ViewBag.Session</h2>
+
+<div class="container mt-3">
+    <div class="table-responsive-sm">
+        <table class="table table-sm table-bordered border-primary table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterState)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CenterZone)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenterNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenterState)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CenterZone)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+<br/>
+&nbsp;

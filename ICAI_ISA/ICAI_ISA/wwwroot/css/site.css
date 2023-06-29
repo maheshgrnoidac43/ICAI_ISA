@@ -1,0 +1,100 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:14px;
+}
+
+#logo {
+    clear: both;
+    height: auto;
+    width: auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    /*background-image: url('../images/header.jpg');*/
+    background-repeat: no-repeat;
+    background-position: left;
+    background-color: #93008E;
+}
+
+.navbar-custom {
+    background-color: #0c63e4 !important;
+    font: normal 12px 'Coda', cursive !important;
+}
+
+.footertext {
+    margin: 0px;
+    line-height: 15px;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 9px;
+    text-align: left !important;
+    background-color: #93008e;
+    color: #fff;    
+}
+.welcome {
+    padding: 10px;
+    margin: 50px;
+    text-align: center;
+    line-height: 30px;
+    background-color: green;
+    border:1px solid green;
+    border-radius:15px;
+}
+
+.welcome a {
+    color: white !important;
+    text-decoration: none;
+    font-weight:bold;
+}
+
+.headerMessage1 {
+    font-size:16px;
+    font-weight:bold;
+    padding:10px;
+}
+
+.headerMessage2 {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;    
+}
+
+.headerMessage3 {
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.accordion-item .accordion-header .accordion-button {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.accordion-item .accordion-body {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.accordion-item .accordion-body a {
+    text-decoration: none;
+    /*color: darkblue;*/
+}
+
+

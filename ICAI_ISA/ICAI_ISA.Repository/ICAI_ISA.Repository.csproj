@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ICAI_ISA.Core\ICAI_ISA.Core.csproj" />
+    <ProjectReference Include="..\ICAI_ISA.Model\ICAI_ISA.Model.csproj" />
+  </ItemGroup>
+
+</Project>
