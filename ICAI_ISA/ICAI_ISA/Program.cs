@@ -17,6 +17,8 @@ namespace ICAI_ISA
 
             builder.Services.AddScoped<IExamCenterRepository, ExamCenterRepository>();
             builder.Services.AddScoped<IExamSessionRepository, ExamSessionRepository>();
+            builder.Services.AddScoped<IIsaRegistrationRepository, IsaRegistrationRepository>();
+            builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IInfoService, InfoService>();
 
             // Add services to the container.
