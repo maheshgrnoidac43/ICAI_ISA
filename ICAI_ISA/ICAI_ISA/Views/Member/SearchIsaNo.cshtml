@@ -1,84 +1,87 @@
 ﻿
 <h2 class="text-capilization text-center headerMessage1">Search ISA Registration Number</h2>
 
-<div class="form-group">
+<div class="container-fluid border border-info p-2">
 
-    <div class="col-md-4">
-    <label for="exampleFormControlInput1" class="form-label">Enter Membership No.</label>
-    <input type="text" class="form-control" id="txtmemno" placeholder="Enter Membership No">
-</div>
-    <div class="col-md-4">
-    <label for="exampleFormControlTextarea1" class="form-label">Enter Date of Birth.</label>
-    <input type="text" class="form-control" id="txtdob" placeholder="DD/MM/YYYY">
-</div>
-    <div class="col-md-4">
-    <button type="submit" class="btn btn-primary mb-3">CHECK STATUS</button>
-</div>
-
-</div>
-
-@*<div class="container mt-3">
-    <div class="table-responsive-sm">
-        <table class="table table-sm table-bordered border-primary table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CenterNo)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CenterName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CenterState)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CenterZone)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterState)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterZone)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterState)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CenterZone)
-                        </td>
-                    </tr>
-                }
-            </tbody>
-
-        </table>
+   <form class="row" id="SearchIsaNoForm">
+    
+    <div class="col-sm-auto">
+    <label for="txtMembershipNo" class="form-label">Enter Membership No.</label>
+    <input type="text" class="form-control form-control-sm" id="txtMembershipNo" placeholder="Enter Membership No">
     </div>
+
+    <div class="col-sm-auto">
+     <label for="txtDateofBirth" class="form-label">Enter Date of Birth.</label>
+     <input type="text" class="form-control form-control-sm" id="txtdob" placeholder="DD/MM/YYYY">
+    </div>
+    <div class="col-sm-auto p-1 ms-2">
+    <button type="button" id="btnSrarchIsaNo" class="btn btn-sm btn-primary mt-4">CHECK STATUS</button>
+    </div>
+
+</form>
+
 </div>
-*@
+
+<div class="container mt-3">
+    <div class="table-responsive" id='tblSearchIsaNoDetails'>        
+   </div>
+</div>
+<br />
+<div class="p-1 ms-2 text-end">
+    <a id="btnBack" asp-controller="Member" asp-action="SearchIsaNo" class="btn btn-sm btn-primary">Back</a>
+</div>
 <br />
 &nbsp;
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnBack").hide();
+        });
+
+        $(function () {
+                $("#btnSrarchIsaNo").click(function () {
+
+                $('#tblSearchIsaNoDetails').html("");
+
+                var data = {
+                            memberNo: $("#txtMembershipNo").val(),
+                            dob: $("#txtdob").val()
+                };
+                var data = JSON.stringify(data)
+                console.log(data);
+               // alert(data);
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetIsaNoDetails", "Member")",
+                    contentType: 'application/json',
+                    data: data,
+                    dataType: "json",
+                    success: function (result) {
+
+                        IsanoDetailsstring = "<table class='table table-bordered border-primary ps-5'>" +
+                                    "<tr><td>Member Name</td><td>" + result.memberName + "</td></tr>" +
+                                    "<tr><td>Membership No.</td><td>" + result.memberNo + "</td></tr>" +
+                                    "<tr><td>ISA Registration No.</td><td>" + result.isaRegistrationNo + "</td></tr>" +
+                                    "<tr><td>Father's Name</td><td>" + result.fatherName + "</td></tr>" +
+                                    "<tr><td>Member Date of Birth</td><td>" + result.memberDob + "</td></tr>" +
+                                    "<tr><td>Course</td><td>" + result.courseCode + "</td></tr>" +                           
+                            "</table>";
+
+                                $("#tblSearchIsaNoDetails").append(IsanoDetailsstring);
+
+                        $("#btnBack").show();
+
+                        console.log(result);
+                    },
+                    error: function () {
+                        alert('Failed to receive the Data');
+                        console.log('Failed ');
+                    }
+                });
+            });
+        });
+        
+    </script>
+}
