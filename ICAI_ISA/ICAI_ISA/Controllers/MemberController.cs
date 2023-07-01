@@ -20,9 +20,20 @@ namespace ICAI_ISA.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public async Task<IActionResult> SearchIsaNo()
         {            
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetIsaNoDetails([FromBody] SearchIsaNo searchisanumber)
+        {
+            if (!ModelState.IsValid) return BadRequest("Enter required fields");
+
+            var result = await _memberService.GetIsaNoDetails(searchisanumber);
+            return Json(result);
         }
 
         [HttpGet]

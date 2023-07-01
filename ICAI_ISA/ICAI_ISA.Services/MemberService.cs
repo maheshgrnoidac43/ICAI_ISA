@@ -16,5 +16,11 @@ namespace ICAI_ISA.Services
         {
             return await _isaRegistrationRepository.GetPaymentStatusResponse(memberDetail);
         }
+
+        public async Task<IsaNoSearchResult> GetIsaNoDetails(SearchIsaNo searchisanumber)
+        {
+            return await _isaRegistrationRepository.GetIsaNoDetails(searchisanumber);
+        }
+
     }
 }
