@@ -45,26 +45,19 @@ namespace ICAI_ISA.Repository
             }
         }
 
-        public async Task<IsaNoSearchResult> GetIsaNoDetails(SearchIsaNo searchisanumber)
+        public async Task<IEnumerable<IsaNoSearchResult>> GetIsaNoDetails(SearchIsaNo searchisanumber)
         {
             using (var connection = context.CreateConnection())
             {
                 var query = string.Empty;
                 DynamicParameters parameters = new DynamicParameters();
-                if (searchisanumber.MemberNo != "" & searchisanumber.Dob != "")
-                {
-                    query = "ChkeckIsaRegistrationNoInVipData";
-                    parameters.Add("mem_no", searchisanumber.MemberNo);
-                    parameters.Add("isadob", searchisanumber.Dob);
-                }
-                else
-                {
-
-                }
-                parameters.Add("outres", dbType: DbType.String, direction: ParameterDirection.Output, size: 10);
+                
+                query = "ChkeckIsaRegistrationNoInVipData";
+                parameters.Add("membershipno", searchisanumber.MemberNo);
+                parameters.Add("isadob", searchisanumber.Dob);                
+                
                 var result = await connection.QueryAsync<IsaNoSearchResult>(query, parameters, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
-                var paymentStatus = parameters.Get<string>("outres");
-                return result.FirstOrDefault();
+                return result;
             }
         }
 

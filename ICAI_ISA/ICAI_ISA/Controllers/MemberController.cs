@@ -29,7 +29,7 @@ namespace ICAI_ISA.Controllers
 
         [HttpPost]
         public async Task<IActionResult> GetIsaNoDetails([FromBody] SearchIsaNo searchisanumber)
-        {
+        {            
             if (!ModelState.IsValid) return BadRequest("Enter required fields");
 
             var result = await _memberService.GetIsaNoDetails(searchisanumber);

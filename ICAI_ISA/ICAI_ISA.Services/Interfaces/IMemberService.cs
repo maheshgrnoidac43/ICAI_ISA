@@ -11,6 +11,6 @@ namespace ICAI_ISA.Services.Interfaces
     {
         Task<PaymentStatusResponse> CheckPaymentStatus(MemberDetail memberDetail);
 
-        Task<IsaNoSearchResult> GetIsaNoDetails(SearchIsaNo searchisanumber);
+        Task<IEnumerable<IsaNoSearchResult>> GetIsaNoDetails(SearchIsaNo searchisanumber);
     }
 }
