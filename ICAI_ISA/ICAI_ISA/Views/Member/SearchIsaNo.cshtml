@@ -3,16 +3,16 @@
 
 <div class="container-fluid border border-info p-2">
 
-   <form class="row" id="SearchIsaNoForm">
+   <form class="row" id="SearchIsaNoForm" autocomplete="off" oncut="return false;" oncopy="return false;" onpaste="return false;" oncontextmenu="return false">
     
     <div class="col-sm-auto">
     <label for="txtMembershipNo" class="form-label">Enter Membership No.</label>
-    <input type="text" class="form-control form-control-sm" id="txtMembershipNo" placeholder="Enter Membership No">
+    <input type="text" class="form-control form-control-sm" id="txtMembershipNo" maxlength="6" placeholder="Enter Membership No">
     </div>
 
     <div class="col-sm-auto">
      <label for="txtDateofBirth" class="form-label">Enter Date of Birth.</label>
-     <input type="text" class="form-control form-control-sm" id="txtdob" placeholder="DD/MM/YYYY">
+     <input type="text" class="form-control form-control-sm" id="txtdob" maxlength="10" placeholder="DD/MM/YYYY">
     </div>
     <div class="col-sm-auto p-1 ms-2">
     <button type="button" id="btnSrarchIsaNo" class="btn btn-sm btn-primary mt-4">CHECK STATUS</button>
@@ -44,13 +44,80 @@
 
                 $('#tblSearchIsaNoDetails').html("");
 
+                //--------start validation------
+                var memnoval = $("#txtMembershipNo").val();
+                //alert(memnoval);
+                if ($.trim(memnoval) == "") {
+                    alert("Enter MemberShip No.");
+                    $("#txtMembershipNo").focus();
+                    return false;
+                }
+
+                if ($.trim(memnoval).length < 6) {
+                    alert("Invalid MemberShip No.");
+                    $("#txtMembershipNo").focus();
+                    return false;
+                }
+
+                if ($.trim(memnoval) != "") {
+                    // value = document.form1.txtMembershipNo.value;
+                    var invalids = "!#$%^&*()_-+=[]{};:',.<>/?~|`";
+                    for (i = 0; i < invalids.length; i++) {
+                        if (memnoval.indexOf(invalids.charAt(i)) >= 0) {
+                            alert("Invalid Application No.");
+                            $("#txtMembershipNo").focus();
+                            return false;
+                        }
+                    }
+                }
+
+                //dob check------------------------------------------------------
+
+                if ($("#txtdob").val() == "") {
+                    alert("Enter your Date of Birth.");
+                    $("#txtdob").focus();
+                    return false;
+                }
+
+                var dob = $("#txtdob").val();
+                if ($.trim(dob).length < 10) {
+                    alert("Invalid Date of Birth.");
+                    $("#txtdob").focus();
+                    return false;
+                }
+
+                if ($("#txtdob").val() != "") {
+                    value = $("#txtdob").val();
+                    //alert (document.form1.txtregno.value.substring(0,3));
+                    //var invalids = "!#$%^&*()~,'<>?;:|[]{}+=`*";
+                    var invalids = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ!#$%^&*()_-+=[]{};:',.<>?~|`";
+                    for (i = 0; i < invalids.length; i++) {
+                        if (value.indexOf(invalids.charAt(i)) >= 0) {
+                            alert("Invalid characters in Date of Birth.");
+                            $("#txtdob").focus();
+                            return false;
+                        }
+                    }
+                }
+
+                if ($("#txtdob").val() != "") {
+                    var s = $("#txtdob").val();
+                    //alert(s)
+                    if (!isValidDate(s)) {
+                        alert("Please enter a valid Date of Birth.");
+                        $("#txtdob").focus();
+                        return false;
+                    }
+                }
+
+                //----------end validation-----------------------------------------------
+
                 var data = {
                             memberNo: $("#txtMembershipNo").val(),
                             dob: $("#txtdob").val()
                 };
                 var data = JSON.stringify(data)
                 console.log(data);
-               // alert(data);
 
                 $.ajax({
                     type: "POST",
@@ -60,28 +127,48 @@
                     dataType: "json",
                     success: function (result) {
 
-                        IsanoDetailsstring = "<table class='table table-bordered border-primary ps-5'>" +
-                                    "<tr><td>Member Name</td><td>" + result.memberName + "</td></tr>" +
-                                    "<tr><td>Membership No.</td><td>" + result.memberNo + "</td></tr>" +
-                                    "<tr><td>ISA Registration No.</td><td>" + result.isaRegistrationNo + "</td></tr>" +
-                                    "<tr><td>Father's Name</td><td>" + result.fatherName + "</td></tr>" +
-                                    "<tr><td>Member Date of Birth</td><td>" + result.memberDob + "</td></tr>" +
-                                    "<tr><td>Course</td><td>" + result.courseCode + "</td></tr>" +                           
-                            "</table>";
-
-                                $("#tblSearchIsaNoDetails").append(IsanoDetailsstring);
-
-                        $("#btnBack").show();
-
                         console.log(result);
+
+                        if(result.length > 0) {
+                            IsanoDetailsstring = "<table class='table table-bordered border-primary ps-5'>" +
+                                        "<tr><td>Member Name</td><td>" + result[0].memberName + "</td></tr>" +
+                                        "<tr><td>Membership No.</td><td>" + result[0].memberNo + "</td></tr>" +
+                                        "<tr><td>ISA Registration No.</td><td>" + result[0].isaRegistrationNo + "</td></tr>" +
+                                        "<tr><td>Father's Name</td><td>" + result[0].fatherName + "</td></tr>" +
+                                        "<tr><td>Member Date of Birth</td><td>" + result[0].memberDob + "</td></tr>" +
+                                        "<tr><td>Course</td><td>" + result[0].courseCode + "</td></tr>" +                           
+                                "</table>";
+
+                                    $("#tblSearchIsaNoDetails").append(IsanoDetailsstring);
+                        }
+                        else {
+
+                            $("#tblSearchIsaNoDetails").append("<span class='text-danger text-center'><strong>There is no data corrosponding to this member and date of birth!</strong></span>");
+                        }
+                        
+                        $("#btnBack").show();
+                        
                     },
-                    error: function () {
-                        alert('Failed to receive the Data');
-                        console.log('Failed ');
-                    }
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                            $("#tblSearchIsaNoDetails").append("<span class='text-danger text-center'><strong>Error: "+ textStatus + "," + XMLHttpRequest.responseText + "</strong></span>");
+                            console.log(XMLHttpRequest);
+                     }
                 });
             });
         });
         
+        // Remove the spaces from the entered and generated code
+        function removeSpaces(string) {
+            return string.split(' ').join('');
+        }
+
+
+        function isValidDate(s) {
+            var bits = s.split('/');
+            var d = new Date(bits[2], bits[1] - 1, bits[0]);
+            //    alert ("date check");
+            return d && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[0]);
+        }
+
     </script>
 }

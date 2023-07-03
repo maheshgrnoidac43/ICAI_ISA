@@ -9,10 +9,10 @@ namespace ICAI_ISA.Model
 {
     public class SearchIsaNo
     {
-        [Required(ErrorMessage = "Please enter Membership No!")]
+        [Required(ErrorMessage = "Please enter Membership No!", AllowEmptyStrings = false)]
         public string MemberNo { get; set; }
 
-        [Required(ErrorMessage = "Please enter Date of Birth!")]
+        [Required(ErrorMessage = "Please enter Date of Birth!", AllowEmptyStrings = false)]
         public string Dob { get; set; }
     }
 }
