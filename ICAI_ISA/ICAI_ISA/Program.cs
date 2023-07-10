@@ -20,6 +20,7 @@ namespace ICAI_ISA
             builder.Services.AddScoped<IIsaRegistrationRepository, IsaRegistrationRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IInfoService, InfoService>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
