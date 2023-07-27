@@ -1,5 +1,7 @@
 ﻿using ICAI_ISA.Model;
 using ICAI_ISA.Services.Interfaces;
+using ICAI_ISA.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ICAI_ISA.Controllers
@@ -22,7 +24,7 @@ namespace ICAI_ISA.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SearchIsaNo()
+        public IActionResult SearchIsaNo()
         {            
             return View();
         }
@@ -37,7 +39,7 @@ namespace ICAI_ISA.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> CheckStatus()
+        public IActionResult CheckStatus()
         {
             return View();
         }
@@ -49,6 +51,22 @@ namespace ICAI_ISA.Controllers
 
             var result = await _memberService.CheckPaymentStatus(memberDetail);
             return Json(result);
+        }
+
+        public IActionResult Provisional()
+        {
+            return View();
+        }
+
+        public IActionResult MemberApplicationForm()
+        {
+            return View();
+        }
+
+        [Authentication]
+        public IActionResult PreviewForm()
+        {
+            return View();
         }
     }
 }
