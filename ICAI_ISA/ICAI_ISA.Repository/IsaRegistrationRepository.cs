@@ -61,5 +61,22 @@ namespace ICAI_ISA.Repository
             }
         }
 
+        public async Task<string> GetLoggedInUserDetails(MemberDetail model)
+        {
+            using (var connection = context.CreateConnection())
+            {
+                var query = string.Empty;
+                DynamicParameters parameters = new DynamicParameters();
+
+                query = "ValidateIsaMemberAndRegistration";
+                parameters.Add("membershipNo", model.MembershipNo);
+                parameters.Add("@isaRegNo", model.RegistrationNo);
+
+                parameters.Add("status", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+                var result = await connection.ExecuteScalarAsync<string>(query, parameters, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
+                return result;
+            }
+        }
+
     }
 }
