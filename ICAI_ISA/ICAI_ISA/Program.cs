@@ -21,6 +21,7 @@ namespace ICAI_ISA
 
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IInfoService, InfoService>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             builder.Services.AddScoped<IAccountService, AccountService>();
 
             // Add services to the container.

@@ -10,7 +10,8 @@ namespace ICAI_ISA.Services.Interfaces
     public interface IMemberService
     {
         Task<PaymentStatusResponse> CheckPaymentStatus(MemberDetail memberDetail);
-
         Task<IEnumerable<IsaNoSearchResult>> GetIsaNoDetails(SearchIsaNo searchisanumber);
+        Task<MemberRegistration> GetMemberRegistrationDetails(string membershipNo, string isaRegistrationNo);
+        Task<MemberRegistration> AddMemberRegistrationDetails(MemberRegistration memberRegistration, SearchOptoutCases searchOptoutCases);
     }
 }
