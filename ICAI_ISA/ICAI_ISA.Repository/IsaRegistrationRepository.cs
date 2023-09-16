@@ -3,6 +3,7 @@ using ICAI_ISA.Core;
 using ICAI_ISA.Model;
 using ICAI_ISA.Repository.Interfaces;
 using System.Data;
+using System.Reflection;
 
 namespace ICAI_ISA.Repository
 {
@@ -67,13 +68,31 @@ namespace ICAI_ISA.Repository
             {
                 var query = string.Empty;
                 DynamicParameters parameters = new DynamicParameters();
-
-                query = "SelectInforfromvipisa";
+                query = "ValidateIsaMemberAndRegistration";
                 parameters.Add("membershipno", membershipNo);
                 parameters.Add("isadob", isaRegistrationNo);
+                
 
+                parameters.Add("status", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
                 var result = await connection.QueryAsync<MemberRegistration>(query, parameters, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
                 return result.FirstOrDefault();
+                
+            }
+        }
+
+        public async Task<string> GetLoggedInUserDetails(MemberDetail model)
+        {
+            using (var connection = context.CreateConnection())
+            {
+                var query = string.Empty;
+                DynamicParameters parameters = new DynamicParameters();
+
+                query = "SelectInforfromvipisa";
+                parameters.Add("membershipNo", model.MembershipNo);
+                parameters.Add("@isaRegNo", model.RegistrationNo);
+                var result = await connection.ExecuteScalarAsync<string>(query, parameters, commandType: CommandType.StoredProcedure).ConfigureAwait(false);
+                return result;
+
             }
         }
 

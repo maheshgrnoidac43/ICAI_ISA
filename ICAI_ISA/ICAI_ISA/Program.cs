@@ -18,12 +18,15 @@ namespace ICAI_ISA
             builder.Services.AddScoped<IExamCenterRepository, ExamCenterRepository>();
             builder.Services.AddScoped<IExamSessionRepository, ExamSessionRepository>();
             builder.Services.AddScoped<IIsaRegistrationRepository, IsaRegistrationRepository>();
+
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IInfoService, InfoService>();
             builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -41,6 +44,7 @@ namespace ICAI_ISA
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
