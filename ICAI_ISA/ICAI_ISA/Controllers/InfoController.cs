@@ -23,10 +23,10 @@ namespace ICAI_ISA.Controllers
             return View();
         }
 
-        public IActionResult Instruction()
-        {
-            ViewBag.Session = "July 2023";
-            return View();
+        public async Task<IActionResult> Instruction()
+        {            
+            var result = await _infoService.GetCurrentExamSessionDetails();
+            return View(result);            
         }
 
         public async Task<IActionResult>  ExamCenter()
@@ -38,7 +38,7 @@ namespace ICAI_ISA.Controllers
 
         public async Task<IActionResult> ImportantDates()
         {
-            ViewBag.Session = "July 2023";
+            //ViewBag.Session = "July 2023";
             var result = await _infoService.GetCurrentExamSessionDetails();
             return View(result);
         }
